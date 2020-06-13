@@ -2,10 +2,19 @@ Question :- Given an array with n objects colored red, white or blue, sort them 
 Here, we will use the integers 0, 1, and 2 to represent the color red, white, and blue respectively.
 Note: You are not suppose to use the library's sort function for this problem.
 
-Answer :- 
+Answer :- ## change position of 0 and 2 then 1 will automaticcaly will get adjusted to its position
 def sortColors(self, nums: List[int]) -> None:
-        r=[0]*3
-        for i,v in enumerate(nums):
-            for j in range(2,v-1,-1):
-                nums[r[j]]=j
-                r[j]+=1
+        l = 0
+        r = len(nums) - 1
+        current = 0
+        
+        while current  <= r:
+            if nums[current] == 0:
+                nums[l],nums[current] = nums[current], nums[l]
+                l += 1
+                current +=1
+            elif nums[current] == 2:
+                nums[current],nums[r] = nums[r],nums[current]
+                r -= 1
+            else:
+                current += 1
